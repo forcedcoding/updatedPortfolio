@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Terminal, Code, Zap } from 'lucide-react';
+import {Terminal, Code, Zap } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
           {/* Logo and Tagline */}
           <div className="flex items-center justify-center space-x-2">
             <Terminal className="w-8 h-8 text-cyan-400 animate-pulse" />
-            <span className="text-2xl font-mono text-white">DEV.PROTOCOL</span>
+            <span className="text-2xl font-mono text-white">BRAIN.INITIATE</span>
           </div>
           
           <p className="text-gray-400 max-w-md mx-auto">
@@ -40,11 +40,11 @@ const Footer: React.FC = () => {
 
           {/* Copyright */}
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2 text-gray-500 text-sm">
-            <span>© {currentYear} Cyber Developer Portfolio.</span>
+            <span>© {currentYear} Web Developer Portfolio.</span>
             <span className="hidden sm:inline">•</span>
             <div className="flex items-center space-x-1">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-400 animate-pulse" />
+              <span>Made by Shashwat Aryan Gupta</span>
+              {/* <Heart className="w-4 h-4 text-red-400 animate-pulse" /> */}
               <span>and lots of caffeine</span>
             </div>
           </div>

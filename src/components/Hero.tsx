@@ -5,7 +5,7 @@ const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  
+
   const texts = ['MERN Developer', 'DSA Enthusiast', 'Problem Solver', 'Code Architect'];
   const currentText = texts[currentIndex];
 
@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
     }, isDeleting ? 50 : 100);
 
     return () => clearTimeout(timeout);
-  }, [displayText, currentText, isDeleting]);
+  }, [displayText, currentText, isDeleting, texts.length]); // ✅ Added texts.length
 
   const scrollToNext = () => {
     const aboutSection = document.getElementById('about');
@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
               <br />
               <span className="text-white">DEVELOPER</span>
             </h1>
-            
+
             <div className="h-16 flex items-center justify-center">
               <span className="text-xl md:text-2xl font-mono text-gray-300">
                 {displayText}
@@ -76,16 +76,25 @@ const Hero: React.FC = () => {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Crafting digital experiences with cutting-edge technologies. 
+            Crafting digital experiences with cutting-edge technologies.
             Specializing in full-stack development and algorithmic problem solving.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button onClick={scrollToProjects} className="cyber-button bg-gradient-to-r from-cyan-400 to-green-400 text-black px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25">
+            <button
+              type="button"
+              onClick={scrollToProjects}
+              className="cyber-button bg-gradient-to-r from-cyan-400 to-green-400 text-black px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25"
+            >
               VIEW PROJECTS
             </button>
-            <button className="cyber-button-outline border-2 border-cyan-400 text-cyan-400 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-black transition-all duration-300">
+            <button
+              type="button"
+              className="cyber-button-outline border-2 border-cyan-400 text-cyan-400 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-black transition-all duration-300"
+              title="View CV"
+              aria-label="View CV"
+            >
               VIEW CV
             </button>
           </div>
@@ -93,14 +102,16 @@ const Hero: React.FC = () => {
           {/* Social Links */}
           <div className="flex justify-center space-x-6 pt-8">
             {[
-              { Icon: Github, href: "#", color: "hover:text-gray-300" },
-              { Icon: Linkedin, href: "#", color: "hover:text-blue-400" },
-              { Icon: Mail, href: "#", color: "hover:text-red-400" }
-            ].map(({ Icon, href, color }, index) => (
+              { Icon: Github, href: "https://github.com/forcedcoding", label: "GitHub", color: "hover:text-gray-300" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/shashwat-a-gupta-719588257/", label: "LinkedIn", color: "hover:text-blue-400" },
+              { Icon: Mail, href: "#", label: "Email", color: "hover:text-red-400" }
+            ].map(({ Icon, href, label, color }, index) => (
               <a
                 key={index}
                 href={href}
                 className={`text-gray-400 ${color} transition-all duration-300 hover:scale-125 p-2`}
+                title={label}
+                aria-label={label}
               >
                 <Icon className="w-6 h-6" />
               </a>
@@ -109,10 +120,13 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
           <button
+            type="button"
             onClick={scrollToNext}
             className="animate-bounce text-cyan-400 hover:text-white transition-colors"
+            title="Scroll down"
+            aria-label="Scroll down"
           >
             <ChevronDown className="w-8 h-8" />
           </button>

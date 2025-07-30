@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-md border-b border-cyan-400/20">
+    <header className="fixed top-0 left-0 right-0 z-40 bg-black/40 backdrop-blur-md border-b border-cyan-400/20">
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}

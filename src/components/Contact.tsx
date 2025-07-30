@@ -20,12 +20,27 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    alert('Message transmitted successfully! I will respond within 24 hours.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+
+    try {
+      const res = await fetch('https://controlling-portfolio.onrender.com/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      alert('Message transmitted successfully! I will respond within 24 hours.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error(error);
+      alert('Transmission failed. Please try again later.');
+    }
+
     setIsSubmitting(false);
   };
 
@@ -57,7 +72,7 @@ const Contact: React.FC = () => {
     { icon: Github, href: 'https://github.com/forcedcoding', label: 'GitHub', color: 'hover:text-gray-300' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/shashwat-a-gupta-719588257/', label: 'LinkedIn', color: 'hover:text-blue-400' },
     { icon: Twitter, href: 'https://x.com/Shashwat_AGupta', label: 'Twitter', color: 'hover:text-blue-300' },
-    { icon: Mail, href: 'shashwatar.9876@gmail.com', label: 'Email', color: 'hover:text-red-400' }
+    { icon: Mail, href: 'mailto:shashwatar.9876@gmail.com', label: 'Email', color: 'hover:text-red-400' }
   ];
 
   return (
@@ -75,7 +90,7 @@ const Contact: React.FC = () => {
 
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
+            {/* Contact Info */}
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-bold text-white mb-6">Connection Endpoints</h3>
@@ -96,7 +111,6 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              {/* Social Links */}
               <div>
                 <h3 className="text-2xl font-bold text-white mb-6">Social Networks</h3>
                 <div className="flex space-x-4">
@@ -106,6 +120,8 @@ const Contact: React.FC = () => {
                       href={social.href}
                       className={`p-3 bg-gray-800/30 backdrop-blur-sm rounded-lg border border-gray-700 text-gray-400 ${social.color} transition-all duration-300 hover:scale-110 hover:border-cyan-400/50`}
                       title={social.label}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <social.icon className="w-6 h-6" />
                     </a>
@@ -113,24 +129,22 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              {/* Availability Status */}
               <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-green-400/20">
                 <div className="flex items-center space-x-3 mb-3">
                   <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                   <span className="text-green-400 font-semibold">System Status: Online</span>
                 </div>
                 <p className="text-gray-300 text-sm">
-                  Currently available for freelance projects and full-time opportunities. 
+                  Currently available for freelance projects and full-time opportunities.
                   Response time: 24-48 hours.
                 </p>
               </div>
             </div>
 
-            {/* Contact Form */}
+            {/* Form */}
             <div>
               <form onSubmit={handleSubmit} className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
                 <h3 className="text-2xl font-bold text-white mb-6">Send Transmission</h3>
-                
                 <div className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>

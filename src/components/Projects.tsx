@@ -178,7 +178,8 @@ const Projects: React.FC = () => {
         {/* Call to Action */}
         <div className="text-center mt-16">
           <p className="text-gray-400 mb-6">Want to see more projects?</p>
-          <button className="bg-gradient-to-r from-cyan-400 to-green-400 text-black px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25">
+          <button 
+            onClick={() => window.open('https://github.com/forcedcoding', '_blank')} className="bg-gradient-to-r from-cyan-400 to-green-400 text-black px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25">
             VIEW GITHUB PROFILE
           </button>
         </div>
