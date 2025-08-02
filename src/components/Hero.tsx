@@ -42,6 +42,9 @@ const Hero: React.FC = () => {
       aboutSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  const moveToResume = () => {
+    window.open('https://drive.google.com/file/d/1GQ2p4cgyKj0fxlJwrkIMBm7Q6-Qk-CcF/view?usp=drive_link', '_blank');
+  };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -94,8 +97,9 @@ const Hero: React.FC = () => {
               className="cyber-button-outline border-2 border-cyan-400 text-cyan-400 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-black transition-all duration-300"
               title="View CV"
               aria-label="View CV"
+              onClick={moveToResume}
             >
-              VIEW CV
+              VIEW RESUME
             </button>
           </div>
 
